@@ -1,0 +1,58 @@
+version: "3.1"
+services:
+  Agent1:
+    build: 
+      context: .
+      shm_size: '2gb'
+    image: testproject/agent:latest
+    container_name: Agent1
+    depends_on:
+      - chrome
+      - firefox
+    volumes:
+      - {path}/TestProject/agent1:/var/testproject/agent
+    environment:
+      TP_API_KEY: "FnzTHpnxvM0p0my1brmZ-JsGfi5MgGtHaewrkwwX8Yc1"
+      TP_AGENT_ALIAS: "{Name} Docker Agent 1"
+      CHROME: "chrome:4444"
+      FIREFOX: "firefox:4444"
+  Agent2:
+    build: 
+      context: .
+      shm_size: '2gb'
+    image: testproject/agent:latest
+    container_name: Agent2
+    depends_on:
+      - chrome
+      - firefox
+    volumes:
+      - {path}/TestProject/agent2:/var/testproject/agent
+    environment:
+      TP_API_KEY: "FnzTHpnxvM0p0my1brmZ-JsGfi5MgGtHaewrkwwX8Yc1"
+      TP_AGENT_ALIAS: "{name} Docker Agent 2"
+      CHROME: "chrome:4444"
+      FIREFOX: "firefox:4444"
+  Agent3:
+    build: 
+      context: .
+      shm_size: '2gb'
+    image: testproject/agent:latest
+    container_name: Agent3
+    depends_on:
+      - chrome
+      - firefox
+    volumes:
+      - {path}/TestProject/agent3:/var/testproject/agent
+    environment:
+      TP_API_KEY: "FnzTHpnxvM0p0my1brmZ-JsGfi5MgGtHaewrkwwX8Yc1"
+      TP_AGENT_ALIAS: "{name} Docker Agent 3"
+      CHROME: "chrome:4444"
+      FIREFOX: "firefox:4444"
+  chrome:
+    image: selenium/standalone-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+  firefox:
+    image: selenium/standalone-firefox
+    volumes:
+      - /dev/shm:/dev/shm
